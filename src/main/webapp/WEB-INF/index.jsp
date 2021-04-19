@@ -15,22 +15,26 @@
     <jsp:body>
 
         <div>
-            <h2>Our Cool Site</h2>
 
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-                Main page for this 2. semester start project used at cphbusiness.dk
-            </div>
+            <h2>Welcome to Olsker cupcakes</h2>
 
-            <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
-             </c:if>
+
+                <c:if test="${sessionScope.user == null}">
+                <p style="font-size: larger">Log in to make an order:
+                    </br><a href="fc/loginpage">Login</a> or <a href="fc/registerpage">sign up</a>
+                </p>
+                </c:if>
+
 
              <c:if test="${sessionScope.role == 'customer' }">
-                <p style="font-size: larger">This is what you can do, since your
-                    are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
+                <p style="font-size: larger">Since you're logged in, you can now order:</p>
+                <p><label for="cars">Choose a car:</label>
+                    <select id="cars" name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
             </c:if>
 
         </div>
