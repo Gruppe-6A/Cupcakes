@@ -25,12 +25,7 @@
                     </br><a href="fc/loginpage">Login</a> or <a href="fc/registerpage">sign up</a>
                 </p>
                 </c:if>
-            <c:if test="${sessionScope.role == 'employee' }">
-               <h1>Hello, ${sessionScope.email}.</h1>
-                <p>What would you like to do?</p>
-                <a class="btn btn-primary" href="fc/employeepage" role="button">View customers and their orders</a>
 
-            </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
                 <p style="font-size: larger">Since you're logged in, you can now order:</p>
