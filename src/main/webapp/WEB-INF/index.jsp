@@ -35,25 +35,25 @@
              <c:if test="${sessionScope.role == 'customer' }">
                 <p style="font-size: larger">Since you're logged in, you can now order:</p>
                 <p>
+                 <form method="post" action="${pageContext.request.contextPath}/fc/checkout">
                  <label for="bottoms">Choose a bottom:</label>
-
                  <select name="bottoms" id="bottoms">
-                     <option value="Chocolate">Chocolate</option>
-                     <option value="vanilla">vanilla</option>
-                     <option value="Nutmeg">Nutmeg</option>
-                     <option value="Pistacchio">Pistacchio</option>
-                     <option value="Almond">Almond</option>
+                     <option value="1">Chocolate</option>
+                     <option value="2">vanilla</option>
+                     <option value="3">Nutmeg</option>
+                     <option value="4">Pistacchio</option>
+                     <option value="5">Almond</option>
                  </select>
                  <label for="toppings">Choose a topping</label>
                  <select name="toppings" id="toppings">
-                     <option value="Chocolate">Chocolate</option>
-                     <option value="Blueberry">Blueberry</option>
-                     <option value="Strawberry">Strawberry</option>
-                     <option value="Bluecheese">Blue cheese</option>
-                     <option value="Raspberry">Raspberry</option>
-                     <option value="Orange">Orange</option>
-                     <option value="Lemon">Lemon</option>
-                     <option value="Rumraisin">Rum raisin</option>
+                     <option value="1">Chocolate</option>
+                     <option value="2">Blueberry</option>
+                     <option value="3">Strawberry</option>
+                     <option value="4">Blue cheese</option>
+                     <option value="5">Raspberry</option>
+                     <option value="6">Orange</option>
+                     <option value="7">Lemon</option>
+                     <option value="8">Rum raisin</option>
                  </select>
 
                 <%-- <div class="dropdown mb-3">
@@ -84,8 +84,8 @@
                     <button class="btn btn-success" type="submit">Add to cart</button>
                 </p>
             </c:if>
+        </form>
 
-        </div>
 
     </jsp:body>
 </t:genericpage>

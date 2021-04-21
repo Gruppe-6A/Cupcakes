@@ -19,13 +19,18 @@ public class CupcakeMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO cupcakes (bottom, topping, amount) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO cupcakes (cupcakes_id, orders_id, bottoms_id, toppings_id, quantity) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
-                ps.setString(1, cupcake.getBottom());
-                ps.setString(2, cupcake.getTopping());
-                ps.setInt(3, cupcake.getAmount());
+                ps.setInt(1, cupcake.getCupcakes_id());
+                ps.setInt(2, cupcake.getOrders_id());
+                ps.setInt(3, cupcake.getBottom());
+                ps.setInt(4, cupcake.getTopping());
+                ps.setInt(5, cupcake.getQuantity());
+
+
+
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();

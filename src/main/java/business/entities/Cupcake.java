@@ -3,17 +3,31 @@ package business.entities;
 public class Cupcake
 {
 
-    public Cupcake(String bottom, String topping, int amount)
+    public Cupcake(int bottom, int topping, int quantity, int cupcakes_id, int orders_id)
     {
         this.bottom = bottom;
         this.topping = topping;
-        this.amount = amount;
+        this.quantity = quantity;
+        this.cupcakes_id = cupcakes_id;
+        this.orders_id = orders_id;
     }
 
     private int id; // just used to demo retrieval of autogen keys in UserMapper
-    private String bottom;
-    private String topping; // Should be hashed and secured
-    private int amount;
+    private int bottom;
+    private int topping; // Should be hashed and secured
+    private int quantity;
+    private int cupcakes_id;
+    private int orders_id;
+
+    public int getOrders_id(){
+        return cupcakes_id;
+    }
+
+    public int getCupcakes_id() {
+        return cupcakes_id;
+    }
+
+
 
     public int getId() {
         return id;
@@ -23,27 +37,27 @@ public class Cupcake
         this.id = id;
     }
 
-    public String getBottom() {
+    public int getBottom() {
         return bottom;
     }
 
-    public void setBottom(String bottom) {
+    public void setBottom(int bottom) {
         this.bottom = bottom;
     }
 
-    public String getTopping() {
+    public int getTopping() {
         return topping;
     }
 
-    public void setTopping(String topping) {
+    public void setTopping(int topping) {
         this.topping = topping;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
