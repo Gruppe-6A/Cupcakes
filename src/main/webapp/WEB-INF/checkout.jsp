@@ -11,8 +11,14 @@
 
     <jsp:body>
         <h1>Hello ${sessionScope.email} </h1>
-        Here's your order ${requestScope.toppings}
-        ${requestScope.bottoms}
+        Here's your order:</br>
+        Bottoms: ${requestScope.getBottomsNames} ${requestScope.getBottomsPrice}kr</br>
+        Toppings: ${requestScope.getToppingsNames} ${requestScope.getToppingsPrice}kr</br>
+        Sum: ${requestScope.getSum}kr   
+
+
+
+
     </jsp:body>
 
 </t:genericpage>

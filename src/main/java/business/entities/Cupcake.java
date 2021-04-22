@@ -3,13 +3,13 @@ package business.entities;
 public class Cupcake
 {
 
-    public Cupcake(int bottom, int topping, int quantity, int cupcakes_id, int orders_id)
+    public Cupcake(int bottom, int topping, int quantity)
     {
         this.bottom = bottom;
         this.topping = topping;
         this.quantity = quantity;
-        this.cupcakes_id = cupcakes_id;
-        this.orders_id = orders_id;
+       // this.cupcakes_id = cupcakes_id;
+        //this.orders_id = orders_id;
     }
 
     private int id; // just used to demo retrieval of autogen keys in UserMapper

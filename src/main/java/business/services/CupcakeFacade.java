@@ -5,6 +5,8 @@ import business.exceptions.UserException;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
 
+import java.sql.SQLException;
+
 
 public class CupcakeFacade {
     CupcakeMapper cupcakeMapper;
@@ -15,13 +17,32 @@ public class CupcakeFacade {
     }
 
 
-    public Cupcake createCupcake(int bottom, int topping, int quantity, int cupcakes_id, int orders_id) throws UserException
+    public Cupcake createCupcake(int bottom, int topping, int quantity) throws UserException
     {
-        Cupcake cupcake = new Cupcake(bottom, topping, quantity, cupcakes_id, orders_id);
+        Cupcake cupcake = new Cupcake(bottom, topping, quantity);
 
         //System.out.println(cupcake);
         int user_id = 0;
-        cupcakeMapper.createCupcake(cupcake, user_id);
+        cupcakeMapper.insertIntoOrder(cupcake, user_id);
         return cupcake;
     }
+
+    public String getToppingNameFromID(int ID) throws SQLException
+    {
+         return cupcakeMapper.getToppingNameFromID(ID);
+    }
+    public String getBottomNameFromID(int ID) throws SQLException
+    {
+        return cupcakeMapper.getBottomNameFromID(ID);
+    }
+    public double getBottomPriceFromID(int ID) throws SQLException
+    {
+        return CupcakeMapper.getBottomPriceFromID(ID);
+    }
+    public double getToppingPriceFromID(int ID) throws SQLException
+    {
+        return CupcakeMapper.getToppingPriceFromID(ID);
+    }
+
+
 }
