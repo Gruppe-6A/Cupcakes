@@ -58,6 +58,15 @@
 
                  </select>
 
+                 <label for="quantity">Choose amount:</label>
+                 <select name="quantity" id="quantity">
+                     <option value="1">1 stk</option>
+                     <option value="2">2 stk</option>
+                     <option value="3">3 stk</option>
+                     <option value="4">4 stk</option>
+                     <option value="5">5 stk</option>
+                 </select>
+
                 <%-- <div class="dropdown mb-3">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Choose a bottom

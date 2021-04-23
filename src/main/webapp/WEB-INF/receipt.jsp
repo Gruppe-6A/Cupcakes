@@ -10,15 +10,9 @@
     </jsp:attribute>
 
     <jsp:body>
-        <h1>Hello ${sessionScope.email} </h1>
-        Here's your order:</br>
-        Bottoms: ${requestScope.getBottomsNames} ${requestScope.getBottomsPrice}kr</br>
-        Toppings: ${requestScope.getToppingsNames} ${requestScope.getToppingsPrice}kr</br>
-        Sum: ${requestScope.getSum}kr
 
-
-        <button class="btn btn-success" type="submit">Add to cart</button>
-
+        <h1>Here is your receipt:</h1>
+        ${requestScope.receipt}
     </jsp:body>
 
 </t:genericpage>

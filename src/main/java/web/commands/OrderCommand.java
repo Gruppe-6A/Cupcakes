@@ -39,14 +39,22 @@ public class OrderCommand extends CommandProtectedPage{
         Double getToppingsPrice = 0.00;
         Double getBottomsPrice = 0.00;
         Double getSum =0.00;
+        Double getAllSum =0.00;
 
         try{
             getBottomsPrice = cupcakeFacade.getBottomPriceFromID(bottom);
             getToppingsPrice = cupcakeFacade.getToppingPriceFromID(topping);
+
             getSum = cupcakeFacade.getToppingPriceFromID(topping)+cupcakeFacade.getBottomPriceFromID(bottom);
+
+           // getAllSum = getSum * quantity;
+
+
         } catch (SQLException ex){
 
         }
+
+
 
         try {
             getBottomsNames = cupcakeFacade.getBottomNameFromID(bottom);
