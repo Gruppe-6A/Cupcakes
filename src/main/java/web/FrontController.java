@@ -1,11 +1,14 @@
 package web;
 
+import business.entities.Top;
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.CupcakeFacade;
 import web.commands.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,6 +39,20 @@ public class FrontController extends HttpServlet
             {
                 Logger.getLogger("web").log(Level.SEVERE, ex.getMessage(), ex);
             }
+        }
+
+        CupcakeFacade cupcakefacade = new CupcakeFacade(database);
+
+        try{
+            List<Top>
+                    toplist = cupcakefacade.getNamesToppings();
+            getServletContext().setAttribute("toplist", toplist);
+            List<Top> bottomlist = cupcakefacade.getAllBottoms();
+            getServletContext().setAttribute("bottomlist", bottomlist);
+
+
+        } catch(UserException e){
+            e.printStackTrace();
         }
 
         // Initialize whatever global datastructures needed here:

@@ -1,5 +1,8 @@
 package web.commands;
 
+import business.entities.Basket;
+import business.entities.Bottom;
+import business.entities.Top;
 import business.entities.User;
 import business.exceptions.UserException;
 import business.services.CupcakeFacade;
@@ -8,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderCommand extends CommandProtectedPage{
     private CupcakeFacade cupcakeFacade;
@@ -31,7 +35,19 @@ public class OrderCommand extends CommandProtectedPage{
 
         int bottom = Integer.parseInt(request.getParameter("bottoms"));
         int topping = Integer.parseInt(request.getParameter("toppings"));
-        int quantity = 0;
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        List<Top> toplist = (List<Top>) request.getServletContext().getAttribute("toplist");
+        List<Bottom> bottomlist = (List<Bottom>) request.getServletContext().getAttribute("Bottomlist");
+
+        Basket basket = (Basket) session.getAttribute("basket");
+
+        if(basket == null){
+            basket = new Basket();
+        }
+
+
+
        // int cupcakes_id = 0;
         //int orders_id = 0;
         String getToppingsNames ="";
@@ -64,7 +80,7 @@ public class OrderCommand extends CommandProtectedPage{
         request.setAttribute("getBottomsPrice", getBottomsPrice);
         request.setAttribute("getSum", getSum);
 
-       cupcakeFacade.createCupcake(bottom, topping, quantity);
+       cupcakeFacade.createCupcake(bottom,topping, quantity);
 
 
         return pageToShow;

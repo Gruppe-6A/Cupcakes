@@ -10,13 +10,32 @@
     </jsp:attribute>
 
     <jsp:body>
-        <h1>Hello ${sessionScope.email} </h1>
-        Here's your order:</br>
-        Bottoms: ${requestScope.getBottomsNames} ${requestScope.getBottomsPrice}kr</br>
-        Toppings: ${requestScope.getToppingsNames} ${requestScope.getToppingsPrice}kr</br>
-        Sum: ${requestScope.getSum}kr   
+        <table class="table table striped">
+        <thead>
+        <tr>
+            <td>Antal</td>
+            <td>Top</td>
+            <td>Bund</td>
+            <td>Pris</td>
+        </tr>
+        </thead>
+            <c:forEach var="basketItem" items="${sessionScope.basket.basketItemList}">
+                <tr>
+                    <td>${basketItem.quantity}</td>
+                    <td>${basketItem.top.name}</td>
+                    <td>${basketItem.bottom.name}</td>
+                    <td>${basketItem.price}</td>
 
+                </tr>
+            </c:forEach>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>pris i alt:</td>
+                <td>${sessionScope.basket.totalSum()}</td>
 
+            </tr>
+        </table>
 
 
     </jsp:body>

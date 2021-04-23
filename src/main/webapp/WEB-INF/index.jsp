@@ -38,25 +38,37 @@
                  <form method="post" action="${pageContext.request.contextPath}/fc/checkout">
                  <label for="bottoms">Choose a bottom:</label>
                  <select name="bottoms" id="bottoms">
-                     <option value="1">Chocolate</option>
-                     <option value="2">vanilla</option>
-                     <option value="3">Nutmeg</option>
-                     <option value="4">Pistacchio</option>
-                     <option value="5">Almond</option>
+                     <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
+                     <option value="1">Chocolate (5.0kr)</option>
+                     <option value="2">vanilla (5.0kr)</option>
+                     <option value="3">Nutmeg (5.0kr)</option>
+                     <option value="4">Pistacchio (6.0kr)</option>
+                     <option value="5">Almond (7.0kr)</option>
+                     </c:forEach>
                  </select>
                  <label for="toppings">Choose a topping</label>
                  <select name="toppings" id="toppings">
-                     <option value="1">Chocolate</option>
-                     <option value="2">Blueberry</option>
-                     <option value="3">Strawberry</option>
-                     <option value="4">Blue cheese</option>
-                     <option value="5">Raspberry</option>
-                     <option value="6">Orange</option>
-                     <option value="7">Lemon</option>
-                     <option value="8">Rum raisin</option>
-                     <option value="9">Crispy</option>
-
+                     <c:forEach var="topItem" items="${applicationScope.topList}">
+                     <option value="1">Chocolate (5.0kr)</option>
+                     <option value="2">Blueberry (5.0kr)</option>
+                     <option value="3">Strawberry (6.0kr)</option>
+                     <option value="4">Blue cheese (8.0kr)</option>
+                     <option value="5">Raspberry (5.0kr)</option>
+                     <option value="6">Orange (8.0kr)</option>
+                     <option value="7">Lemon (8.0kr)</option>
+                     <option value="8">Rum raisin (7.0kr)</option>
+                     <option value="9">Crispy (6.0kr)</option>
+                     </c:forEach>
                  </select>
+                     <label for="toppings">Choose a topping</label>
+                     <select name="amount" id="quantity">
+                         <option value="1">1 stk.</option>
+                         <option value="2">2 stk.</option>
+                         <option value="3">3 stk.</option>
+                         <option value="4">4 stk.</option>
+                         <option value="5">5 stk.</option>
+                     </select>
+
 
                 <%-- <div class="dropdown mb-3">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,5 +1,6 @@
 package business.persistence;
 
+import business.entities.BasketItem;
 import business.entities.Cupcake;
 import business.entities.User;
 import business.exceptions.UserException;
@@ -16,7 +17,7 @@ public class CupcakeMapper
     {
         this.database = database;
     }
-    public void insertIntoOrder(Cupcake cupcake, int userID) throws UserException{
+    public void insertIntoOrder(BasketItem basketItem, int userID) throws UserException{
         try(Connection connection = database.connect()){
             String sql = "INSERT INTO orders (users_user_id) VALUES (?)";
 
@@ -26,9 +27,9 @@ public class CupcakeMapper
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
                 int id = ids.getInt(1);
-                cupcake.setId(id);
+                basketItem.setId(id);
 
-                createCupcake(cupcake, userID);
+                createCupcake(basketItem, userID);
             }
         }catch(SQLException ex){
 
@@ -38,7 +39,7 @@ public class CupcakeMapper
     }
 
 
-    public void createCupcake(Cupcake cupcake,  int userID) throws UserException
+    public void createCupcake(BasketItem basketItem, int userID) throws UserException
     {
         try (Connection connection = database.connect())
         {
@@ -48,7 +49,7 @@ public class CupcakeMapper
             {
                 //ps.setInt(1, cupcake.getCupcakes_id());
                 //ps.setInt(2, cupcake.getOrders_id());
-                ps.setInt(1, cupcake.getBottom());
+                ps.setInt(1, basketItem.getBottom());
                 ps.setInt(2, cupcake.getTopping());
                 ps.setInt(3, cupcake.getQuantity());
 
@@ -97,7 +98,7 @@ public class CupcakeMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT price FROM bottoms WHERE bottoms_id = "+ ID;
+            String sql = "SELECT names FROM bottoms WHERE bottoms_id = "+ ID;
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
