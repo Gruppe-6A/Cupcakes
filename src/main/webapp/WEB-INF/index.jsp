@@ -29,6 +29,7 @@
                <h1>Hello, ${sessionScope.email}.</h1>
                 <p>What would you like to do?</p>
                 <a class="btn btn-primary" href="fc/employeepage" role="button">View customers and their orders</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/fc/emailHenter" role="button">Insert money into account</a>
 
             </c:if>
 

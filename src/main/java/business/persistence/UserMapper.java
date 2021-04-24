@@ -18,7 +18,7 @@ public class UserMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (email, password, role, account) VALUES (?, ?, ?, 0)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
@@ -40,6 +40,21 @@ public class UserMapper
         {
             throw new UserException(ex.getMessage());
         }
+    }
+
+    public void insertMoneyIntoUsers(String email, double amount) throws SQLException{
+        try(Connection connection = database.connect()){
+            String sql = "UPDATE users SET account = (account + "+ amount +") WHERE email = '"+ email+"';";
+            System.out.println("UPDATE users SET account = (account + "+ amount +") WHERE email = "+ email+";");
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                ps.executeUpdate();
+            }
+        }catch(SQLException ex){
+
+        }
+
+
     }
 
     public User login(String email, String password) throws UserException

@@ -14,6 +14,11 @@ public class User
     private String email;
     private String password; // Should be hashed and secured
     private String role;
+    private Double amount;
+
+    public Double getAmount() {
+        return amount;
+    }
 
     public String getEmail()
     {
@@ -55,4 +60,7 @@ public class User
         this.id = id;
     }
 
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 }

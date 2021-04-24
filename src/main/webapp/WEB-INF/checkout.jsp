@@ -16,9 +16,9 @@
         Toppings: ${requestScope.getToppingsNames} ${requestScope.getToppingsPrice}kr</br>
         Sum: ${requestScope.getSum}kr
 
-
-        <button class="btn btn-success" type="submit">Add to cart</button>
-
+    <form action="${pageContext.request.contextPath}/fc/receipt.jsp" method="post">
+        <button class="btn btn-success" type="submit"></button>
+    </form>
     </jsp:body>
 
 </t:genericpage>

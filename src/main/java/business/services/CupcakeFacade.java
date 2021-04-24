@@ -17,12 +17,12 @@ public class CupcakeFacade {
     }
 
 
-    public Cupcake createCupcake(int bottom, int topping, int quantity) throws UserException
+    public Cupcake createCupcake(int bottom, int topping, int quantity, int user_id) throws UserException
     {
         Cupcake cupcake = new Cupcake(bottom, topping, quantity);
 
         //System.out.println(cupcake);
-        int user_id = 0;
+        //cupcakeMapper.createCupcake(cupcake, user_id);
         cupcakeMapper.insertIntoOrder(cupcake, user_id);
         return cupcake;
     }

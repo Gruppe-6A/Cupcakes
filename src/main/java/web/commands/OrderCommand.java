@@ -20,7 +20,7 @@ public class OrderCommand extends CommandProtectedPage{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
         User user;
-        int user_id = 1;
+        int user_id = 6;
         HttpSession session = request.getSession();
 
         if(session.getAttribute("user") != null)
@@ -72,7 +72,7 @@ public class OrderCommand extends CommandProtectedPage{
         request.setAttribute("getBottomsPrice", getBottomsPrice);
         request.setAttribute("getSum", getSum);
 
-       cupcakeFacade.createCupcake(bottom, topping, quantity);
+       cupcakeFacade.createCupcake(bottom, topping, quantity, user_id);
 
 
         return pageToShow;

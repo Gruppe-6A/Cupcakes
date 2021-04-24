@@ -5,6 +5,8 @@ import business.persistence.Database;
 import business.persistence.UserMapper;
 import business.exceptions.UserException;
 
+import java.sql.SQLException;
+
 public class UserFacade
 {
     UserMapper userMapper;
@@ -24,6 +26,10 @@ public class UserFacade
         User user = new User(email, password, "customer");
         userMapper.createUser(user);
         return user;
+    }
+
+    public void InsertMoneyIntoUsers(String email, double amount) throws SQLException {
+        userMapper.insertMoneyIntoUsers(email, amount);
     }
 
 }
