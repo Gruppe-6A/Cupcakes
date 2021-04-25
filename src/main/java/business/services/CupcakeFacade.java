@@ -1,11 +1,13 @@
 package business.services;
 
 import business.entities.Cupcake;
+import business.entities.CupcakeEntry;
 import business.exceptions.UserException;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class CupcakeFacade {
@@ -21,10 +23,13 @@ public class CupcakeFacade {
     {
         Cupcake cupcake = new Cupcake(bottom, topping, quantity);
 
-        //System.out.println(cupcake);
-        //cupcakeMapper.createCupcake(cupcake, user_id);
         cupcakeMapper.insertIntoOrder(cupcake, user_id);
         return cupcake;
+    }
+
+    public List<CupcakeEntry> getAllOrders() throws UserException
+    {
+     return cupcakeMapper.getAllOrders();
     }
 
 

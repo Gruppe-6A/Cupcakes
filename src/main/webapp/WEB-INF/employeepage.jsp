@@ -10,7 +10,19 @@
     </jsp:attribute>
     <jsp:body>
         <h1>Hello ${sessionScope.email} </h1>
-        You are now logged in as a EMPLOYEE of our wonderful site.
+        This is a list of all orders:
+
+        <table>
+            <thead><th>Customer</th><th>Orders ID</th><th>Topping</th><th>Bottom</th></thead>
+            <c:forEach var="cupcakeEntryList" items="${requestScope.cupcakeEntryList}">
+                <tr>
+                    <td>${cupcakeEntryList.email}</td>
+                    <td>${cupcakeEntryList.orders_id}</td>
+                    <td>${cupcakeEntryList.topping}</td>
+                    <td>${cupcakeEntryList.bottom}</td>
+                </tr>
+            </c:forEach>
+        </table>
 
     </jsp:body>
 </t:genericpage>

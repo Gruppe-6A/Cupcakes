@@ -1,12 +1,15 @@
 package business.persistence;
 
 import business.entities.Cupcake;
+import business.entities.CupcakeEntry;
 import business.entities.User;
 import business.exceptions.UserException;
 import com.mysql.cj.protocol.Resultset;
 
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CupcakeMapper
 {
@@ -176,6 +179,43 @@ public class CupcakeMapper
         {
             throw new SQLException();
         }
+
+    }
+
+    public List<CupcakeEntry> getAllOrders() throws UserException {
+
+        List<CupcakeEntry> cupcakeEntryList = new ArrayList<>();
+        try (Connection connection = database.connect())
+        {
+            String sql = "select u.email, o.orders_id, top.names, bot.names from orders o join cupcakes c on o.orders_id = c.orders_id join toppings top on c.toppings_id = top.toppings_id join bottoms bot on c.bottoms_id = bot.bottoms_id join users u on u.id = o.users_user_id;";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+
+                    int orders_id = rs.getInt("orders_id");
+                    String bottomName = rs.getString("names");
+                    String toppingName = rs.getString("names");
+                    String userEmail = rs.getString("email");
+
+                    cupcakeEntryList.add(new CupcakeEntry(userEmail, orders_id, bottomName, toppingName));
+                    return cupcakeEntryList;
+                } else
+                    {
+                        throw new UserException("No cupcake table found in database");
+                    }
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+
 
     }
     /*public void GetCupcakePrice(Cupcake cupcake, int userID) throws UserException{
