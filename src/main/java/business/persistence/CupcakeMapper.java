@@ -28,7 +28,7 @@ public class CupcakeMapper
                 int id = ids.getInt(1);
                 cupcake.setId(id);
 
-               createCupcake(cupcake, userID);
+               createCupcake(cupcake, userID, id);
             }
         }catch(SQLException ex){
 
@@ -40,22 +40,29 @@ public class CupcakeMapper
 
 
 
-    public void createCupcake(Cupcake cupcake,  int userID) throws UserException
+    public void createCupcake(Cupcake cupcake,  int userID, int id) throws UserException
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO `cupcake`.`cupcakes` " +
-            "(" +"`toppings_id`,"+"`bottoms_id`,"+"`quantity`) " +
-            "VALUES (?,?,?);";
-
-
+            String sql = "INSERT INTO `cupcake`.`cupcakes`"+
+            "(orders_id,toppings_id,bottoms_id,quantity)"+
+            "VALUES (?,?,?,?);";
+            System.out.println("INSERT INTO `cupcake`.`cupcakes`"+
+                    "(orders_id,toppings_id,bottoms_id,quantity)"+
+                    "VALUES (?,?,?,?);");
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
-                //ps.setInt(1, cupcake.getCupcakes_id());
-               ps.setInt(1, cupcake.getBottom());
-               ps.setInt(2, cupcake.getTopping());
-               ps.setInt(3, cupcake.getQuantity());
+                ps.setInt(1, id);
+                System.out.println(id);
+               ps.setInt(2, cupcake.getBottom());
+                System.out.println(cupcake.getBottom());
+               ps.setInt(3, cupcake.getTopping());
+                System.out.println(cupcake.getTopping());
+               ps.setInt(4, cupcake.getQuantity());
+                System.out.println(cupcake.getQuantity());
              //  ps.setInt(4, userID);
+
+                ps.execute();
 
             }
             catch (SQLException ex)

@@ -17,7 +17,7 @@
         Sum: ${requestScope.getSum}kr
 
     <form action="${pageContext.request.contextPath}/fc/receipt.jsp" method="post">
-        <button class="btn btn-success" type="submit"></button>
+        <button class="btn btn-success" type="submit">Checkout</button>
     </form>
     </jsp:body>
 
