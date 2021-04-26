@@ -187,24 +187,20 @@ public class CupcakeMapper
         List<CupcakeEntry> cupcakeEntryList = new ArrayList<>();
         try (Connection connection = database.connect())
         {
-            String sql = "select u.email, o.orders_id, top.names, bot.names from orders o join cupcakes c on o.orders_id = c.orders_id join toppings top on c.toppings_id = top.toppings_id join bottoms bot on c.bottoms_id = bot.bottoms_id join users u on u.id = o.users_user_id;";
+            String sql = "select u.email, o.orders_id, top.names as 'toppingnames', bot.names as 'bottomnames' from orders o join cupcakes c on o.orders_id = c.orders_id join toppings top on c.toppings_id = top.toppings_id join bottoms bot on c.bottoms_id = bot.bottoms_id join users u on u.id = o.users_user_id;";
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-
+                while (rs.next()) {
                     int orders_id = rs.getInt("orders_id");
-                    String bottomName = rs.getString("names");
-                    String toppingName = rs.getString("names");
+                    String bottomName = rs.getString("bottomnames");
+                    String toppingName = rs.getString("toppingnames");
                     String userEmail = rs.getString("email");
 
                     cupcakeEntryList.add(new CupcakeEntry(userEmail, orders_id, bottomName, toppingName));
-                    return cupcakeEntryList;
-                } else
-                    {
-                        throw new UserException("No cupcake table found in database");
-                    }
+                }
+                return cupcakeEntryList;
             }
             catch (SQLException ex)
             {
