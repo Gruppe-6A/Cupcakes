@@ -1,0 +1,42 @@
+@startuml
+
+hide circle
+hide methods
+
+class User {
+email
+password
+role
+amount
+}
+
+class Cupcake {
+id
+bottom
+topping
+quantity
+}
+
+class Orders {
+orders_id
+user_users_id
+}
+
+class Toppings {
+toppings_id
+names
+price
+}
+
+class Bottoms {
+bottoms_id
+names
+price
+}
+
+Bottoms "1" -right- "*" Cupcake
+Toppings "1" -left- "*" Cupcake
+Cupcake "*" -down- "1" Orders
+Orders "*" -right- "1" User
+
+@enduml
